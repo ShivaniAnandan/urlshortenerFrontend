@@ -10,7 +10,7 @@ const RedirectPage = () => {
     const fetchUrl = async () => {
       try {
         // Make a request to your backend to get the long URL
-        const response = await axios.get(`http://localhost:5000/api/url/${shortUrl}`);
+        const response = await axios.get(`https://urlshortenerbackend-b9op.onrender.com/api/url/${shortUrl}`);
         // Redirect to the long URL
         window.location.href = response.data.longUrl;
       } catch (error) {

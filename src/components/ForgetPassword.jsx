@@ -17,7 +17,7 @@ const forgetpassword = async(e)=>{
     e.preventDefault()
     setLoading(true)
     try {
-        let res = await axios.post('https://passwordresetbackend-3ifu.onrender.com/user/forget-password',{
+        let res = await axios.post('https://urlshortenerbackend-b9op.onrender.com/api/auth/forget-password',{
             email
         })
         if(res.status==201)

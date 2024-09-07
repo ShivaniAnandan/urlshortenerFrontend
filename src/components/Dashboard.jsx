@@ -20,9 +20,21 @@ const Dashboard = () => {
 
   const handleRedirect = () => {
     // Redirect to the long URL
+    const fetchUrl = async () => {
+        try {
+          // Make a request to your backend to get the long URL
+          const response = await axios.get(`https://urlshortenerbackend-b9op.onrender.com/api/url/${shortUrl}`);
+          // Redirect to the long URL
+          window.location.href = response.data.longUrl;
+        } catch (error) {
+          console.error('Error fetching the URL:', error);
+          // Handle errors or show a message
+        }
+      };
     if (submittedData && submittedData.shortUrl) {
-      const redirectUrl = `http://localhost:5000/api/url/${submittedData.shortUrl}`;
-      window.location.href = redirectUrl; // Use window.location.href for external URLs
+      // const redirectUrl = `https://urlshortenerbackend-b9op.onrender.com/api/url/${submittedData.shortUrl}`;
+      // window.location.href = redirectUrl; // Use window.location.href for external URLs
+      fetchUrl();
     }
   };
 

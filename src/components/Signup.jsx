@@ -23,7 +23,7 @@ function Signup() {
     e.preventDefault()
     setLoading(true)
     try {
-      let res = await axios.post('https://passwordresetbackend-3ifu.onrender.com/user/signup',{
+      let res = await axios.post('https://urlshortenerbackend-b9op.onrender.com/api/auth/signup',{
         userName,
         email,
         password

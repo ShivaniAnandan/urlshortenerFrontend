@@ -19,14 +19,14 @@ function Resetpassword() {
 
   const [password,setPassword] = useState("")
 
-  const{randomString,expirationTimestamp}=useParams();
+  const{token}=useParams();
     let navigate = useNavigate()
 
     const resetpassword = async(e)=>{
         e.preventDefault()
         setLoading(true)
         try {
-            let res = await axios.post(`https://passwordresetbackend-3ifu.onrender.com/user/reset-password/${randomString}/${expirationTimestamp}`,{
+            let res = await axios.post(`https://urlshortenerbackend-b9op.onrender.com/api/auth/reset-password/${token}`,{
                 newPassword:password
             })
 

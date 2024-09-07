@@ -23,7 +23,7 @@ function Login() {
     e.preventDefault()
     setLoading(true)
     try {
-      let res = await axios.post('https://passwordresetbackend-3ifu.onrender.com/user/login',{
+      let res = await axios.post('https://urlshortenerbackend-b9op.onrender.com/api/auth/login',{
         email,
         password
       })
