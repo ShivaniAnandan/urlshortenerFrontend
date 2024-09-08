@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+
 * {
   box-sizing: border-box;
 }
@@ -26,6 +29,9 @@ body {
   color: #f9f9f9 !important;
   font-family: "Euclid Circular A";
   /* animation: gradient 10s infinite alternate linear; */
+}
+.lock{
+  margin-top: -30px;
 }
 
 @media (width >= 500px) {
@@ -548,4 +554,89 @@ margin-left: -50px;
   }
   
   /* Additional styles for other elements if needed */
+}
+
+/* Gradient background without image */
+.dashboard-container {
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
+  background-size: cover;
+  min-height: 100vh;
+  padding: 20px;
+  color: #333;
+}
+
+/* Style for logout button */
+.logout-button {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.logout-button .btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Title styles */
+.title {
+  text-align: center;
+  color: #16AC88;
+  margin-bottom: 30px;
+}
+
+/* Form container styling */
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.shorten-form {
+  background-color: #CCF5D3;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  border-color: #16AC88;
+  border-radius: 5px;
+}
+
+.btn-success {
+  background-color: #16AC88;
+  border-color: #16AC88;
+}
+
+.btn-success:hover {
+  background-color: #14a573;
+  border-color: #14a573;
+}
+
+/* Submitted data styling */
+.submitted-data {
+  background-color: #CCF5D3;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.url-text {
+  color: black;
+  word-wrap: break-word;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
 }

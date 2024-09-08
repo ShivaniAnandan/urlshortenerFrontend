@@ -72,7 +72,7 @@ function Resetpassword() {
               type={showPassword ? 'text' : 'password'} // Here is the change
               placeholder="Password" onChange={(e)=>setPassword(e.target.value)}
             />
-            <span style={{ paddingBottom: '70px' }} className="material-symbols-outlined">
+            <span style={{ paddingBottom: '70px' }} className="material-icons-outlined">
               {' '}
               lock{' '}
             </span>

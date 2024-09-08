@@ -8,8 +8,4 @@ export const shortenURL = async (longUrl) => {
   return response.data;
 };
 
-// // Function to fetch the long URL based on the short URL
-// export const fetchUrl = async (shortUrl) => {
-//   const response = await axios.get(`${API_URL}/${shortUrl}`);
-//   return response.data;
-// };
+

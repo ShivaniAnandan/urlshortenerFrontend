@@ -53,7 +53,7 @@ const forgetpassword = async(e)=>{
 
         <div className="textbox">
           <input type="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
-          <span className="material-symbols-outlined"> email </span>
+          <span className="material-icons-outlined"> email </span>
         </div>
 
         

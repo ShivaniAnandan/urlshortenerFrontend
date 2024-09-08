@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import icon from "../images/icon.png";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import "./App.css";
 import axios from "axios";
+import "./App.css";
 
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -48,7 +48,7 @@ function Signup() {
           <div className="loading-spinner"></div>
         </div>
       )}
-      <div className="login" style={{ height: "635px", paddingTop: "11px" }}>
+      <div className="login" style={{ height: "700px", paddingTop: "11px" }}>
         <div className="avatar" style={{ width: "100px", height: "100px" }}>
           <img src={icon} alt="Icon" />
         </div>
@@ -63,7 +63,7 @@ function Signup() {
               required
               onChange={(e) => setFirstName(e.target.value)}
             />
-            <span className="material-symbols-outlined"> account_circle </span>
+            <span className="material-icons-outlined">account_circle</span>
           </div>
 
           <div className="textbox">
@@ -73,7 +73,7 @@ function Signup() {
               required
               onChange={(e) => setLastName(e.target.value)}
             />
-            <span className="material-symbols-outlined"> account_circle </span>
+            <span className="material-icons-outlined">account_circle</span>
           </div>
 
           <div className="textbox">
@@ -83,19 +83,19 @@ function Signup() {
               required
               onChange={(e) => setEmail(e.target.value)}
             />
-            <span className="material-symbols-outlined"> email </span>
+            <span className="material-icons-outlined">email</span>
           </div>
 
           <div className="textbox">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
-              pattern=".{8,}" // Minimum of 8 characters
+              pattern=".{8,}"
               title="Password must be at least 8 characters"
               required
               onChange={(e) => setPassword(e.target.value)}
             />
-            <span className="material-symbols-outlined"> lock </span>
+            <span className="material-icons-outlined lock">lock</span>
 
             <div style={{ display: "flex" }}>
               <input
@@ -125,7 +125,7 @@ function Signup() {
               onClick={() => navigate("/login")}
             >
               Login
-            </span>{" "}
+            </span>
           </p>
         </form>
       </div>
