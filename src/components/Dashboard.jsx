@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { shortenURL } from '../services/urlService';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 
 const Dashboard = () => {
   const [longUrl, setLongUrl] = useState('');
   const [description, setDescription] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [submittedData, setSubmittedData] = useState(null);
+  const navigate = useNavigate(); // Initialize navigate function
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,26 +22,31 @@ const Dashboard = () => {
 
   const handleRedirect = () => {
     // Redirect to the long URL
-    const fetchUrl = async () => {
-        try {
-          // Make a request to your backend to get the long URL
-          const response = await axios.get(`https://urlshortenerbackend-b9op.onrender.com/api/url/${shortUrl}`);
-          // Redirect to the long URL
-          window.location.href = response.data.longUrl;
-        } catch (error) {
-          console.error('Error fetching the URL:', error);
-          // Handle errors or show a message
-        }
-      };
     if (submittedData && submittedData.shortUrl) {
-      // const redirectUrl = `https://urlshortenerbackend-b9op.onrender.com/api/url/${submittedData.shortUrl}`;
-      // window.location.href = redirectUrl; // Use window.location.href for external URLs
-      fetchUrl();
+      const redirectUrl = `https://urlshortenerbackend-b9op.onrender.com/api/url/${submittedData.shortUrl}`;
+      window.location.href = redirectUrl; // Use window.location.href for external URLs
     }
+  };
+
+  const handleLogout = () => {
+    // Clear data from local storage
+    localStorage.clear();
+
+    // Redirect to the login page
+    navigate('/login'); // Replace '/login' with your actual login page route
   };
 
   return (
     <div className="container mt-5">
+      <div className="mb-3">
+        <button
+          onClick={handleLogout}
+          className="btn btn-danger"
+          style={{ float: 'right' }}
+        >
+          Logout
+        </button>
+      </div>
       <h1 className='text-center' style={{ color: "#16AC88" }}>URL Shortener</h1>
       <div className="row justify-content-center">
         <div className="col-md-6 col-lg-12">
@@ -80,7 +87,12 @@ const Dashboard = () => {
               <p><strong>Long URL:</strong> {submittedData.longUrl}</p>
               <p><strong>Description:</strong> {submittedData.description}</p>
               <p><strong>Short URL:</strong> {submittedData.shortUrl}</p>
-              <button onClick={handleRedirect}>Click To Redirect</button>
+              <button
+                onClick={handleRedirect}
+                className="btn btn-primary"
+              >
+                Click To Redirect
+              </button>
             </div>
           )}
         </div>

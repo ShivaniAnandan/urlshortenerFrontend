@@ -29,9 +29,10 @@ function Login() {
       })
       if (res.status === 201) {
         toast.success("Login successfully")
+        console.log(res.data);
         const { token, user } = res.data;
         localStorage.setItem('token', token);
-        localStorage.setItem('userName', JSON.stringify(user.userName));
+        localStorage.setItem('userName', JSON.stringify(user.firstName));
         navigate('/dashboard');
     }
     } catch (error) {
