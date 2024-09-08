@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { shortenURL } from '../services/urlService';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 
 const Dashboard = () => {
   const [longUrl, setLongUrl] = useState('');
   const [description, setDescription] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [submittedData, setSubmittedData] = useState(null);
-  const navigate = useNavigate(); // Initialize navigate function
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Add this state
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check authentication status
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    } else {
+      setIsAuthenticated(true);
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,20 +32,18 @@ const Dashboard = () => {
   };
 
   const handleRedirect = () => {
-    // Redirect to the long URL
     if (submittedData && submittedData.shortUrl) {
       const redirectUrl = `https://urlshortenerbackend-b9op.onrender.com/api/url/${submittedData.shortUrl}`;
-      window.location.href = redirectUrl; // Use window.location.href for external URLs
+      window.location.href = redirectUrl;
     }
   };
 
   const handleLogout = () => {
-    // Clear data from local storage
     localStorage.clear();
-
-    // Redirect to the login page
-    navigate('/login'); // Replace '/login' with your actual login page route
+    navigate('/login');
   };
+
+  if (!isAuthenticated) return null; // Prevent rendering if not authenticated
 
   return (
     <div className="container mt-5">

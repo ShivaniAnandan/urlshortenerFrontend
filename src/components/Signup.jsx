@@ -1,87 +1,101 @@
 import React, { useState } from "react";
 import icon from "../images/icon.png";
 import { useNavigate } from "react-router-dom";
-
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify';
 import "./App.css";
 import axios from "axios";
 
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  let [userName,setUserName] = useState("")
-  let [email,setEmail] = useState("")
-  let [password,setPassword] = useState("")
-  
-  let navigate = useNavigate();
-
-  const createUser = async(e)=>{
-    e.preventDefault()
-    setLoading(true)
+  const createUser = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     try {
-      let res = await axios.post('https://urlshortenerbackend-b9op.onrender.com/api/auth/signup',{
-        userName,
+      const res = await axios.post('https://urlshortenerbackend-b9op.onrender.com/api/auth/signup', {
+        firstName,
+        lastName,
         email,
         password
-      })
-      if(res.status==201)
-      {
-        toast.success("User created successfully")
-        navigate('/login')
+      });
+      if (res.status === 201) {
+        toast.success("User created successfully");
+        navigate('/login');
       }
     } catch (error) {
-      console.log(error)
-      toast.error("Fill all the detials")
+      console.log(error);
+      toast.error("Failed to create user. Please check the details and try again.");
+    } finally {
+      setLoading(false);
     }
-    finally{
-      setLoading(false)
-    }
-  }
+  };
 
   return (
     <>
-     {loading && (
+      {loading && (
         <div className="loading-screen">
           <div className="loading-spinner"></div>
         </div>
       )}
       <div className="login" style={{ height: "635px", paddingTop: "11px" }}>
         <div className="avatar" style={{ width: "100px", height: "100px" }}>
-          <img src={icon} />
+          <img src={icon} alt="Icon" />
         </div>
         <h2>Signup</h2>
 
-        <h3>Welcome </h3>
-        <form className="login-form">
+        <h3>Welcome</h3>
+        <form className="login-form" onSubmit={createUser}>
           <div className="textbox">
-            <input type="text" placeholder="Username" required onChange={(e)=>setUserName(e.target.value)}  />
+            <input
+              type="text"
+              placeholder="First Name"
+              required
+              onChange={(e) => setFirstName(e.target.value)}
+            />
             <span className="material-symbols-outlined"> account_circle </span>
           </div>
 
           <div className="textbox">
-            <input type="email" placeholder="Email" required onChange={(e)=>setEmail(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Last Name"
+              required
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <span className="material-symbols-outlined"> account_circle </span>
+          </div>
+
+          <div className="textbox">
+            <input
+              type="email"
+              placeholder="Email"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <span className="material-symbols-outlined"> email </span>
           </div>
 
-          <div className="textbox" >
+          <div className="textbox">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               pattern=".{8,}" // Minimum of 8 characters
               title="Password must be at least 8 characters"
-              required onChange={(e)=>setPassword(e.target.value)}
+              required
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <span
-              style={{ paddingBottom: "70px" }}
-              className="material-symbols-outlined"
-            >
-              {" "}
-              lock{" "}
-            </span>
+            <span className="material-symbols-outlined"> lock </span>
 
             <div style={{ display: "flex" }}>
               <input
@@ -102,7 +116,7 @@ function Signup() {
             </div>
           </div>
 
-          <button type="submit" onClick={(e)=>createUser(e)} >SIGNUP</button>
+          <button type="submit">SIGNUP</button>
 
           <p style={{ color: "#157ae1", fontSize: "18px", marginTop: "4px" }}>
             Already have an account?&nbsp; &nbsp;
